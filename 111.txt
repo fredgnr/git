@@ -1,9 +1,4 @@
-同花顺--straight flush
+﻿同花顺--straight flush
 四张--Quads
 葫芦--cucurbit
 同花--flush
-顺子--straight
-三张--tripleton
-两对--towpair
-一对--pair
-其他牌--otherbrand
