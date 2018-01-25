@@ -1,0 +1,160 @@
+7.
+#include <stdio.h>
+int main(void)
+{  int a1,b1,a2,b2,m,n,c,d,e,f;char ch;
+     printf("Enter the two numbers:");
+	 scanf("%d/%d%c%d/%d",&a1,&a2,&ch,&b1,&b2);
+	 if(ch=='*') {m=a1*b1;n=a2*b2;}
+	 else if (ch=='-'){m=a1*b2-a2*b1;n=a2*b2;}
+	  else if (ch=='+') {m=a1*b2+a2*b1;n=a2*b2;}
+	  else if(ch=='/')  {m=a1*b2;n=a2*b1;}
+	  else return 0;
+	  e=m;f=n;
+	printf("%d/%d",m,n);
+	if(m>n) for(c=1;c!=0;){c=m%n;m=n;n=c;}
+	else if(m<n) for (c=1,d=m,m=n,n=d;c!=0;){c=m%n;m=n;n=c;}
+	else n=m=1;
+	e/=m;f/=m;
+	printf("the answer is %d/%d",e,f);
+	
+}
+8.
+#include <stdio.h>
+#include <ctype.h>
+void main()
+{
+	int hour,minute;char ch;
+	printf("Enter your time:");
+	scanf("%d:%d",&hour,&minute);
+	do{
+		ch=getchar();
+	}while(ch==' ');
+	ch=toupper(ch);
+	if(ch=='A') 
+	{if(hour<8) printf("Closest departure time is 8:00 a.m ,arriving at 10:16 p.m.\n");
+	else if(hour*60+minute<9*60+43) printf("Closest departure time is 9:43 a.m ,arriving at 11:52 p.m.\n");
+	else  printf("Closest departure time is 11:49 a.m,arriving at 1:31 p.m\n");
+	
+	}
+	if(ch=='P')
+	{
+		if(hour==12&&minute<47) printf("Closest departure time is 12:47p.m.,arriving at 3:00p.m.\n");
+		else if(hour<2)printf("Closest departure time is 2:00p.m, arriving at 4:08\n");
+		else if (hour*60+minute<3*60+45) printf("Closest departure time is 3:45 p.m,arriving at 5:55\n");
+		else if (hour<7) printf("Closest departure time is 7:00,arriving at 9:20p.m\n");
+		else printf("Closest departure time is 9:45，ê?arriving at 11:58 p.m\n");
+	}
+	}
+9.
+#include <stdio.h>
+#include <ctype.h>
+void main()
+{
+	int hour,minute;char ch;
+	printf("Enter a 12-hour time:");
+	scanf("%d:%d",&hour,&minute);
+	do
+	{
+		scanf("%c",&ch);
+	}while(ch==' ');
+	ch=toupper(ch);
+	if(ch=='A') printf("Equivalent time is %d:%d\n",hour,minute);
+	else if(ch=='P') printf("Equivalent time is %d:%d\n",hour+12,minute);
+	else printf("You entered a wrong time\n");
+
+10.
+#include <stdio.h>
+#include <ctype.h>
+void main()
+  { char ch;int sum=0;
+    printf("Enter a sentence:");
+	do
+	{
+		scanf("%c",&ch);
+		ch=toupper(ch);
+		if(ch=='A'||ch=='E'||ch=='I'||ch=='O'||ch=='U') 
+			sum+=1;
+		
+	}while(ch!='.');
+	printf("Your sentence contains %d vowels\n",sum);
+
+  }
+
+}
+11.
+#include <stdio.h>
+void main()
+{
+	char first_name,second_name,first_name1;
+	printf("Enter a sentence:");
+	do{
+		first_name=getchar();
+		if(first_name>='A'&&first_name<='Z') first_name1=first_name;
+	}while(first_name!=' ');
+	do  
+	{ second_name=getchar();
+	  if(second_name!=' ') printf("%c",second_name);
+	  if(second_name==' ') break;
+	} while (second_name!=' ');
+	printf(",%c\n",first_name1);
+}
+12.
+#include <stdio.h>
+void main()
+{
+	int num1,num2;char ch;
+	printf("Enter an expression:");
+	scanf("%d",&num1);
+	for(;;)
+	{
+		
+		scanf("%c",&ch);
+         if (ch==' ') break;
+		scanf("%d",&num2);
+		if(ch=='+') num1+=num2;
+		else if(ch=='*') num1*=num2;
+		else if (ch=='-') num1-=num2;
+		else if (ch=='/') num1/=num2;
+		
+	}
+	printf("Value of expression:%d\n",num1);
+}
+13.
+#include <stdio.h>
+#include <ctype.h>
+void main()
+{
+	char ch;int num,words;
+	printf("Enter a sentence:");
+	for (words=1,num=0;;)
+	{ scanf("%c",&ch);
+	 
+	  if((ch>='A'&&ch<='Z')||(ch>='a'&&ch<='z')||ch=='.') num++;
+	  else if(ch==' ') words++;
+	   if (ch=='.') break;
+	}
+	printf("Average word%f\n",(float)num/(float)words);
+}
+14.
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	double x,y;y=1;
+	printf("Enter  a positive number:");
+	scanf("%lf",&x);
+	do 
+	{  if(fabs(y-(y+x/y)/2)>0.00001) 
+		y=(y+x/y)/2;
+	else break;
+	} while (1);
+	printf("Square root:%.5lf",y);
+	 
+
+	
+}
+15.
+
+
+
+

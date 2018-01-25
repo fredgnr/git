@@ -1,0 +1,656 @@
+Qsort.c
+#include <stdio.h>
+#define N 10
+void quicksort(int a[],int low, int high);//排序函数
+int split(int a[],int low,int high);//移动中间数同时输出中间数位置
+int main(void)
+{
+	int a[N],i;
+	printf("Enter %d numbers to be sorted:\n",N);
+	for (i=0;i<N;i++)
+	{
+		scanf("%d",&a[i]);
+	}
+	quicksort(a,0,N-1);
+	printf("In sorted order:");
+	for(i=0;i<N;i++)
+	{
+		printf("%4d",a[i]);
+	}
+	printf("\n");
+	return 0;
+}
+void quicksort(int a[],int low,int high)
+{
+	int middle;
+	if(low>=high) return;
+	middle=split(a,low,high);
+	quicksort(a,low,middle-1);
+	quicksort(a,middle+1,high);
+}
+int split(int a[],int low,int high)
+{
+	int part_element=a[low];
+	for (;;)
+	{
+		while (low<high&&part_element<=a[high])
+			high--;
+		if(high<=low) break;
+		a[low]=a[high];low++;
+		
+		while(low<high&&a[low]<=part_element)
+			low++;
+		if(high<=low) break;
+		a[high]=a[low];high--;
+	}
+	a[high]=part_element;
+	return high;
+}
+2.
+#include <stdio.h>
+void check(int x,int y,int n);
+void main()
+{
+	int x,y,n;
+	printf("Enter your numbers:");
+	scanf("%d%d",&x,&y);
+	printf("Enter your maximum:");
+	scanf("%d",&n);
+	check(x,y,n);
+}
+void check(int x,int y,int n)
+{
+	if(x>=0&&x<=n-1)
+	{
+			if (y>=0&&y<=n-1)
+			printf("right\n");
+	}
+	else printf("wrong\n");
+}
+3.
+#include <stdio.h>
+int gcd(int m,int n);
+void main()
+{
+	int m,n;
+	printf("Enter the two numbers:");
+	scanf("%d%d",&m,&n);
+	printf("%d\n",gcd(m,n));
+}
+int gcd(int m,int n)
+{
+	int i=m;int a;
+	if(m<n)
+	{
+		m=n;n=i;
+	}
+	for(i=0;n>0;)
+	{
+		i=m-n;
+		if(i>n) {a=i;i=n;n=a;}
+	    m=n;n=i;
+	}
+	return m;
+	
+}
+4.
+#include <stdio.h>
+int day_of_year(int year,int month,int day);
+int month_day(int month,int year);
+void main()
+{
+	int year,month,day;
+	printf("Enter a day:");
+	scanf("%d-%d-%d",&year,&month,&day);
+	printf("%d\n",day_of_year(year,month,day));
+}
+int month_day(int month,int year)
+{
+	switch(month)
+	{case 1:case 3:case 5:case 7:case 8:case 10:case 12:
+	           return 31;break;
+	case 2:if(year%4==0&&year%100!=0)
+			   return 29;
+		   else return 28;break;
+	case 4:case 6:case 9:case 11:
+		return 30;break;
+	default:return 0;break;
+
+	}
+}
+int day_of_year(int year,int month,int day)
+{
+	int amount=0,i;
+	for(i=1;i<month;i++)
+	{
+		amount+=month_day(month,year);
+	}
+	return amount+day;
+}
+5.
+#include <stdio.h>
+int num_digits(int n);
+void main()
+{
+	int n;
+	printf("Enter a number:");
+	scanf("%d",&n);
+	printf("%d/n",num_digits(n));
+}
+int num_digits(int n)
+{
+	int i;
+	i=0;
+	for(;n>0;i++)
+	{
+		n/=10;
+	}
+	return i;
+}
+6.
+#include <stdio.h>
+int digit(int n,int k);
+void main()
+{
+	int number,num_digit;
+	printf("Enter a number:");
+	scanf("%d",&number);
+	printf("Enter the num_digit you want:");
+	scanf("%d",&num_digit);
+	printf("The answer is %d/n",digit(number,num_digit));
+}
+int digit(int number,int num_digit)
+{
+	int i,m;
+	for(i=1;number>0;i++)
+	{
+		m=number%10;
+		number/=10;
+		if(i==num_digit)
+			return m;
+	}
+	return 0;
+}
+10.
+（1）
+#include <stdio.h>
+int MAX(int a[],int n);
+void main()
+{
+	int a[10],i;
+	printf("Enter the whole array:");
+	for (i=0;i<10;)
+	{
+		scanf("%d",&a[i]);
+		i++;
+	}
+	printf("%d\n",MAX(a,i));//i=9
+	printf("%d   %d ",a[8],a[9]);
+}
+int MAX(int a[],int n)
+{
+	int m;
+	for (m=0;m<n-2;m++)
+	{
+		if (a[m]>a[m+1])
+		{
+			a[m+1]=a[m];
+		}
+		
+	}
+	printf("\n");
+	return *(a+m);
+}
+(2).
+#include<stdio.h>
+#include<malloc.h>
+#include <stdlib.h>
+float _sum(int a[],int num);
+void main()
+{
+	int num,i;
+	int *a=(int*)malloc(100*sizeof(int));
+	printf("Enter your array:");
+	for(num=0;a[num-1]!=0;num++)
+	{
+		scanf("%d",a+num);
+	}
+	printf("\n%.2f\n",_sum(a,num));
+	free(a);
+}
+float _sum(int a[],int num)
+{
+	int i,sum=0;
+	for(i=0;i<num;i++)
+	{
+		sum+=a[i];
+	}
+	return (float)sum/(float)(i+1);
+}
+(3).
+#include <stdlib.h>
+#include <stdio.h>
+#include <malloc.h>
+int _num(float a[],int length);
+void main()
+{
+	float *a;
+	int i=0;
+	a=(float*)malloc(100*sizeof(float));
+	printf("Enter the whole array:");
+	for (;;)
+	{
+		scanf("%f",a+i);
+		if(*(a+i)==0) break;
+		i++;
+	}
+	printf("%d\n",_num(a,i));
+	free(a);
+}
+int _num(float a[],int length)
+{
+	int n,num;//n用于数组下标
+	for (n=0,num=0;n<length;n++)
+	{
+		if(*(a+n)>0) num++;
+	}
+	return num;
+}
+11.
+#include <stdio.h>
+float compute_GPA(char GPA[],int n);
+void main()
+{
+	char GPA[100];
+	int num_subject;
+	printf("Enter the grade of each subject\n");
+	for (num_subject=0;;num_subject++)
+	{
+	printf("Enter the grade of %d:",num_subject+1);
+	scanf(" %c",GPA+num_subject);
+	if(GPA[num_subject]=='S') break;
+	}
+	printf("The answer is %.2f",compute_GPA(GPA,num_subject));
+}
+ float compute_GPA(char GPA[],int n)
+{
+	int sum=0,x;
+	for (x=0;x<n;x++) 
+	{
+		switch(GPA[x])
+		{
+		case 'A':sum+=4;break;
+		case'B':sum+=3;break;
+		case'C':sum+=2;break;
+		case'D':sum+=1;break;
+		case'F':sum+=0;break;
+		}
+	}
+	return (float)sum/(float)n;
+}
+12.
+double inner_product(double a[],double b[],int n)
+{
+	int i,sum;
+	for(sum=0,i=0;i<n;i++)
+	{
+        sum+=a[i]*b[i];
+	}
+	return sum;
+}
+13.
+int evaluate_position(char board[8][8])
+{
+	int score_white=0,score_black=0,row,column;
+	for(row=0;row<8;row++)
+	{
+		for(column=0;column<8;column++)
+		{
+			switch(board[row][column])
+			{
+				case Q:score_white+=9;break;
+				case q:score_black+=9;break;
+				case R:score_white+=5;break;
+				case r:score_black+=5;break;
+				case B:score_white+=3;break;
+				case b:score_black+=3;break;
+				case P:score_white+=1;break;
+				case p:score_black+=1;break; 
+			}
+		}
+	}
+	return score_white-score_black;
+}
+14.
+bool has_zero(int a[],int n)
+{
+	int i;
+	for(i=0;a[i]==0;i++)
+	{
+		if(i==n-1) return true;
+	}
+	if(i==0)
+		{
+			for(i=0;i<n;i++)
+			{
+				if(a[i]==0) break;
+			}
+        }
+     if(i==n-1) return false;
+}
+15.
+double median(double x,double y,double z)
+{
+	double t;
+	if(x>y) {t=y;y=x;x=t;}
+	if(z>y) x=y;
+	if(z>x&&z<y) x=z;
+	return x;
+}
+
+
+
+16.
+int fact(int n)
+{
+	return n==1?1:n*fact(n-1);
+}
+17.
+int fact(int n)
+{
+	int answer=1,i;
+	for(i=n;i>=1;i--)
+	{
+		answer*=i;
+	}
+	return answer;
+}
+18.
+int gcd(int m,int n)
+{
+	int i=m;int a;
+	if(m<n)
+	{
+		m=n;n=i;
+	}
+	if(n==0) return m;
+	else return gcd(n,m%n);
+	
+}
+编程题
+1.
+#include<stdio.h>
+#define N 10
+void selection_sort(int a[],int n);
+void main()
+{
+	int a[N],i;
+    for(i=0;i<N;i++)
+    {
+    	printf("Enter the %d number",i+1);
+    	scanf("%d",a+i);
+    }
+    selection_sort(a,N);
+    for(i=0;i<N;i++)
+    {
+    	printf("%d\n",a[i] );
+    }
+}
+void selection_sort(int a[],int n)
+{
+	int m=a[0],i=1,t;
+	if(n==1) return;
+	for(;i<n;i++)
+	{
+		if(m>a[i]) {t=a[i],a[i]=a[i-1];a[i-1]=t;}
+		else     { m=a[i];}                    //m<=a[i]
+	}
+	selection_sort(a,n-1);
+}
+4.
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void generate_random_walk(char ch[10][10]);
+void print_array(char ch[10][10]);
+int main(void)
+{
+	char ch[10][10];
+	generate_random_walk(ch);
+	print_array(ch);
+	return 0;
+}
+void generate_random_walk(char ch[10][10])
+{
+	int direction,row,column,truth[4]={1,1,1,1};
+	char character='A';
+	for(row=0;row<10;row++)
+	{
+		for(column=0;column<10;column++)
+		{
+			ch[row][column]='.';
+		}
+	}
+	srand((unsigned)time(NULL));
+	row=rand()%10;
+	column=rand()%10;
+	ch[row][column]='A';
+	for(;character<='Y';)
+	{
+		direction=rand()%4;
+		if(direction==0)
+		{if(column!=0&&ch[row][column-1]=='.')//left
+		{
+			character++;
+			ch[row][column-1]=character;
+			column-=1;
+			truth[0]=1;truth[1]=1;truth[2]=1;truth[3]=1;
+		}
+		else 
+		{
+			truth[0]=0;
+		}
+		} 
+		else if(direction==1)
+		{if(row!=0&&ch[row-1][column]=='.')//upside
+		{
+			character++;
+			ch[row-1][column]=character;
+			row-=1; 
+			truth[0]=1;truth[1]=1;truth[2]=1;truth[3]=1;
+		} 
+		else {
+			truth[1]=0;
+		}
+		} 
+		else if(direction==2)
+		{if(column!=9&&ch[row][column+1]=='.')//right
+		{
+			character++;
+			ch[row][column+1]=character;
+			column+=1;
+			truth[0]=1;truth[1]=1;truth[2]=1;truth[3]=1;
+		}
+		else {
+			truth[2]=0;
+		}
+		} 
+		else 
+		{if(row!=9&&ch[row+1][column]=='.')//underneath
+		{
+			character++;
+			ch[row+1][column]=character;
+			row+=1;
+			truth[0]=1;truth[1]=1;truth[2]=1;truth[3]=1;
+		}
+		else {
+			truth[3]=0;
+		}
+		}
+		if (truth[0]==0&&truth[1]==0&&truth[2]==0&&truth[3]==0)
+			break;
+
+
+	}
+}
+void print_array(char ch[10][10])
+{
+	int row,column;
+	for(row=0;row<10;row++)
+	{
+		for(column=0;column<10;column++)
+		{
+			printf("%c",ch[row][column]);
+		}
+		printf("\n");
+	}
+}
+5.
+#include <stdio.h>
+void create_magic_square(int n ,int  magic_square[99][99]);
+void print_magic_square(int a,int  magic_square[99][99]);
+void main()
+{
+	int n;
+	int  magic_square[99][99];
+	printf("Enter a number:");
+	scanf("%d",&n);
+	create_magic_square(n,magic_square);
+	print_magic_square(n,magic_square);
+}
+void create_magic_square(int n,int  magic_square[99][99])
+{
+	int row=0,column=0,i;
+    for(row=0;row<n;row++)
+    {
+    	for(column=0;column<n;column++)
+    	{
+    		magic_square[row][column]=0;
+    	}
+    }
+    for(i=1,row=0,column=n/2;i<=25;i++)
+    {
+        magic_square[row][column]=i;
+        if(i==25) break;
+        row--;column++;
+        if(row==-1) row=4;
+        if(column==5) column=0;
+        while(magic_square[row][column]!=0) 
+        {
+        	row=(row+1)%5;
+        }
+    }
+}
+void print_magic_square(int n,int magic_square[99][99])
+{
+	int row,column;
+	for(row=0;row<n;row++)
+	{
+		for(column=0;column<n;column++)
+		{
+			printf("%4d",magic_square[row][column]);
+		}
+		printf("\n");
+	}
+}
+6.
+#include "stdio.h"
+double function(double x);
+void main()
+{
+	double x;
+	printf("%lf",x);
+	printf("answer:%.3lf",function(x));
+}
+double function(double x)
+{
+	return 3*x*x*x*x*x+2*x*x*x*x-5*x*x*x-x*x+7*x-6;
+}
+7.
+#include <stdio.h>
+double power(double x,int n)
+{
+	if(n%2!=0) 
+	{
+		return x*power(x,n-1);
+	}
+	if(n%2==0)
+	{
+		if(n==0) return 1;
+		else
+		{
+			return x*power(x,n/2-1)*x*power(x,n/2-1);
+		}
+	}
+}
+void main()
+{
+	int n;double x;
+	printf("Enter the equaltion:");
+	scanf("%lf %d",&x,&n);
+	printf("%lf",power(x,n));
+8.
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+int roll_dice(void);
+bool play_game(void);
+int main(void)
+{
+	int wins=0,loses=0;char command;
+	printf("Commands:\tY\\y--play again n--the times you won and lost and then exit the game\n");
+	for(;;)
+	{
+		if(play_game())
+		{ 
+			printf("You win!\n");
+			wins++;
+		}
+		else 
+		{
+			printf("You lose!\n");
+			loses++;
+		}
+		printf("Play again?\n");
+		scanf(" %c",&command);
+		if(command=='Y'||command=='y') continue;
+		else if(command=='n') 
+		{
+			printf("wins:%d  Loses:%d\n",wins,loses);
+			break;
+		}
+	}
+}
+int roll_dice(void)
+{
+	int roll=0;
+	srand(time(NULL));
+	roll+=rand()%6+1;
+	roll+=rand()%6+1;
+	return roll;
+}
+bool play_game()
+{
+	int point, count;
+	count=roll_dice();
+	printf("You rolled:%d\n",count);
+	if(count==7||count==11) return true;
+	else if(count==2||count==3||count==12) return false;
+	else {
+		point=count;
+		printf("Your point is %d\n",point);
+		for(;;)
+		{
+			count=roll_dice();
+			printf("You rolled:%d\n",count);
+			if(count==7) return false;
+			else if(count ==point ) return true;
+		}
+	}
+}
+
+
+
+
+
+

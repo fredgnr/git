@@ -1,0 +1,695 @@
+5.
+#include <stdio.h>
+void main()
+{
+	int fib_number[40]={0},i;
+	fib_number[0]=0;fib_number[1]=1;
+	for(i=2;i<40;i++)
+	{  
+		fib_number[i]=fib_number[i-1]+fib_number[i-2];
+
+	}
+	for(i=0;i<40;i++)
+	{
+		printf("%d ",fib_number[i]);
+	}
+}
+8.
+#include <stdio.h>
+void main()
+{
+	int temperature[30][24];int day,hour;
+	for(day=0;day<30;day++)
+	{
+		for (hour=0;hour<24;hour++)
+		{        printf("Enter the temperature of %d/%d:",day+1,hour+1);
+		scanf("%d",&temperature[hour][day]);
+		}
+	}
+}
+9.
+#include <stdio.h>
+void main()
+{
+	int temperature[30][24];int day,hour,sum,sum2;
+	for(day=0;day<30;day++)
+	{
+		for (hour=0;hour<24;hour++)
+		{        printf("Enter the temperature of %d/%d:",day+1,hour+1);
+		scanf("%d",&temperature[hour][day]);
+		}
+	}
+	for(sum2=0,day=0;day<30;day++)
+	{
+		for (sum=0,hour=0;hour<24;hour++)
+		{sum+=temperature[day][hour];
+		}
+		printf("The average temperature of %d is %.2f",day,(float)sum/24.0f);
+		sum2+=(float)sum/24.0f;}
+	printf("The average temperature of the %d is %d",(float)sum2/24.0f);
+}
+
+10.
+#include <stdio.h>
+void main()
+{
+	char chess_board[8][8]={{'r','n','b','q','k','b','n','r'}};int i,n;
+	for (i=0;i<8;i++)
+	{
+		chess_board[1][i]='p';
+	}
+	for(i=0;i<8;i++)
+	{
+		if((i-1)%2==0){chess_board[2][i]='.';}
+		else chess_board[2][i]=' ';
+	}
+	for (i=0;i<8;i++)
+	{ if(i%2==0) chess_board[3][i]='.';
+	else chess_board[3][i]=' ';
+	}
+	for(i=0;i<8;i++)
+	{
+		if((i-1)%2==0){chess_board[4][i]='.';}
+		else chess_board[4][i]=' ';
+	}
+	for (i=0;i<8;i++)
+	{ if(i%2==0) chess_board[5][i]='.';
+	else chess_board[5][i]=' ';
+	}
+	for(i=0;i<8;i++)
+	{
+		chess_board[6][i]='P';
+	}
+	chess_board[7][0]='R';chess_board[7][1]='N';chess_board[7][2]='B';chess_board[7][3]='Q';
+	chess_board[7][4]='K';chess_board[7][5]='B';chess_board[7][6]='N';chess_board[7][7]='R';
+     for(i=0;i<8;i++)
+	 {
+		 for(n=0;n<8;n++)
+		 {     printf("%c",chess_board[i][n]);
+		} printf("\n");
+	 }
+
+}
+
+11.
+#include <stdio.h>
+void main()
+{
+	int i,j;char checker_broad[8][8];
+	for(i=0;i<8;i++)//初始化数组。
+	{
+		for (j=0;j<8;j++)
+		{   if((i+j)%2==0) checker_broad[i][j]='B';
+		else checker_broad[i][j]='R';
+		}
+	}
+	for(i=0;i<8;i++)//验证数组是否正确初始化。
+	{ for(j=0;j<8;j++)
+	{
+		printf("%c",checker_broad[i][j]);
+	}
+	printf("\n");
+	}
+}
+编程题
+1.
+#include <stdio.h>
+void main()
+{
+	int truth[100]={0},False[100]={0};int num,digit;
+	printf("Enter a number:");
+	scanf("%d",&num);
+	printf("Repeated digits(s):");
+	for (;num>0;num/=10)
+	{digit=num%10;
+	if(truth[digit])
+	{if(False[digit]==0)
+		printf("%d ",digit);
+	    False[digit]=1;}
+	truth[digit]=1;
+	}
+}
+2.
+#include <stdio.h>
+void main()
+{
+	int times[100]={0};int n,digit;
+	printf("Enter a number:");
+	scanf("%d",&n);
+	for (;n>0;n/=10,)
+	{digit=n%10;
+	 times[digit]+=1;
+	}
+	printf("Digit      :");
+	for (n=0;n<=9;n++)
+	{printf("%5d",n);
+	}
+	printf("\n");
+	printf("Occurrences:");
+	for (n=0;n<=9;n++)
+	{printf("%5d",times[n]);
+	}
+	printf("\n");
+}
+3.
+#include <stdio.h>
+int main(void)
+{
+	int times[100]={0};int n,digit;
+	for(;;)
+	{
+	printf("Enter a number:");
+	scanf("%d",&n);
+	if(n<=0) return 0;
+		
+		
+     for (;n>0;n/=10)
+	{digit=n%10;
+	times[digit]+=1;
+	}
+	printf("Digit      :");
+	for (n=0;n<=9;n++)
+	{printf("%5d",n);
+	}
+	printf("\n");
+	printf("Occurrences:");
+	for (n=0;n<=9;n++)
+	{printf("%5d",times[n]);
+	}
+	printf("\n");
+		}
+	printf("\n");
+}
+4.
+#include <stdio.h>
+#define SIZE (int)(sizeof(a)/sizeof(a[0]))
+void main()
+{
+	int a[10],i;
+	printf("Enter 10 numbers:");
+	for (i=0;i<=SIZE-1;i++)
+	{scanf("%d",&a[i]);
+	}
+	printf("In reverse orders:");
+	for(i=SIZE-1;i>=0;i--)
+	{
+		printf(" %d",a[i]);
+		printf("\n");
+	}
+}
+5.
+#include <stdio.h>
+#define INITIAL_BALANCE 100.00
+#define NUM_RATE 5
+void main()
+{
+	double value[5],low_rate;//钱和最低利息 
+	int year,i,month;
+	for (year=1;year<=5;year++)
+	{
+		value[year-1]=INITIAL_BALANCE;//初始化总金额
+	}
+	printf("Enter your low_late:");//输入最低利息
+	scanf("%lf",&low_rate);
+	printf("Years ");
+	
+	for (year=0;year<5;year++)
+	{ printf("%3.0f%%    ",low_rate+year);
+	}
+	printf("\n");
+	for(year=1;year<=5;year++)
+	{
+		printf("%2d  ",year);
+		for (i=0;i<5;i++)
+			
+		{for (month=1;month<12;month++)//计算每月的结果
+		{value[i]*=(1+(low_rate+i)/1200);
+		}
+		printf("%8.2f",value[i]);
+		}
+			
+		printf("\n");
+	}
+}
+6.
+#include <stdio.h>
+#include <ctype.h>
+#define N 40
+void main()
+{
+	char message[N];int n,i;
+	printf("Enter message:");
+	for (n=0,i=0;n<N;n++)
+	{scanf("%c",&message[n]);
+	if (message[n]!='.') i++;
+	 if(message[n]=='.') break;
+	}
+	message[i]='\0';
+	printf("In BIFF-speak:");
+	for (n=0;n<i;n++)
+	{message[n]=toupper(message[n]);
+	  switch(message[n])
+	  {
+	  case 'A':message[n]='4';break;
+	  case 'B':message[n]='8';break;
+	  case 'E':message[n]='3';break;
+	  case 'I':message[n]='1';break;
+	  case 'O':message[n]='0';break;
+	  case 'S':message[n]='5';break;
+	  }
+	  printf("%c",message[n]);
+	}
+	for (n=1;n<=10;n++)
+	{printf("!");
+	}
+	printf("\n");
+	
+}
+7.
+#include <stdio.h>
+void main()
+{
+	int a[5][5],row,column,sum;
+	for (row=0;row<5;row++)
+	{
+		printf("Enter row %d:\t",row+1);
+		for (column=0;column<5;column++)
+		{scanf("%d",&a[row][column]);
+		}
+		
+	}
+	printf("\n");
+	printf("Row total:");
+	for (row=0;row<5;row++)
+	{for (sum=0,column=0;column<5;column++)
+	{sum+=a[row][column];
+	}
+	printf("%d  ",sum);
+	}
+	printf("\n");
+	printf("Column totals:");
+	for (column=0;column<5;column++)
+	{
+		for (sum=0,row=0;row<5;row++)
+		{sum+=a[row][column];
+		}
+		printf("%d  ",sum);
+	}
+	printf("\n");
+}
+8.
+#include <stdio.h>
+			void main()
+		{
+			int a[5][5],student,subject,sum,MAX,MIN;
+			for (student=0;student<5;student++)
+			{
+				printf("Enter student %d:  ",student+1);
+				for (subject=0;subject<5;subject++)
+				{scanf("%d",&a[student][subject]);
+				}
+
+			}
+			printf("\n");
+			printf("student's average score:");
+			for (student=0;student<5;student++)
+			{for (sum=0,subject=0;subject<5;subject++)
+			{sum+=a[student][subject];
+			}
+			printf("%d  ",sum/5);
+			}
+			printf("\n");
+			printf("the average score of each subject :");
+			for (subject=0;subject<5;subject++)
+			{
+				for (sum=0,student=0;student<5;student++)
+				{sum+=a[student][subject];
+				}
+				printf("%d  ",sum/5);
+			}
+			printf("\n");
+			for(subject=0;subject<5;subject++)
+			{
+				for(MAX,student=0;student<4;student++)
+				{if(a[student][subject]>a[student+1][subject]) {MAX=a[student][subject];MIN=a[student+1][subject];}
+				else {MAX=a[student+1][subject];MIN=a[student][subject];}
+				}
+				printf("the max score of %d subject is %d\n",subject+1,MAX );
+				printf("the min score of %d subject is %d\n",subject+1,MIN);
+			}
+			printf("\n" );
+
+		}
+9.
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int main(void)
+{
+	char ch[10][10],character='A',*p;
+	int direction,row,column,truth[4]={1,1,1,1};
+	for (p=&ch[0][0];p<=&ch[9][9];p++)
+	{
+		*p='.';
+	}
+	srand((unsigned)time(NULL));
+	row=rand()%10;//确¨¡¤定¡§开a始º?排?数ºy
+	column=rand()%10;//确¨¡¤定¡§开a始º?列¢D数ºy
+	ch[row][column]='A';
+	for(;character<='Y';)
+	{
+		direction=rand()%4;//确¨¡¤定¡§方¤?向¨°
+		if(direction==0)
+		{if(column!=0&&ch[row][column-1]=='.')//left
+		{
+			character++;
+			ch[row][column-1]=character;
+			column-=1;
+			truth[0]=1;truth[1]=1;truth[2]=1;truth[3]=1;//还1原-判D定¡§
+		}
+		else 
+		{
+			truth[0]=0;
+		}
+		} 
+		else if(direction==1)
+		{if(row!=0&&ch[row-1][column]=='.')//upside
+		{
+			character++;
+			ch[row-1][column]=character;
+			row-=1; 
+			truth[0]=1;truth[1]=1;truth[2]=1;truth[3]=1;//还1原-判D定¡§
+		} 
+		else {
+			truth[1]=0;
+		}
+		} 
+		else if(direction==2)
+		{if(column!=9&&ch[row][column+1]=='.')//right
+		{
+			character++;
+			ch[row][column+1]=character;
+			column+=1;
+			truth[0]=1;truth[1]=1;truth[2]=1;truth[3]=1;//还1原-判D定¡§
+		}
+		else {
+			truth[2]=0;
+		}
+		} 
+		else 
+		{if(row!=9&&ch[row+1][column]=='.')//underneath
+		{
+			character++;
+			ch[row+1][column]=character;
+			row+=1;
+			truth[0]=1;truth[1]=1;truth[2]=1;truth[3]=1;//还1原-判D定¡§
+		}
+		else {
+			truth[3]=0;
+		}
+		}
+		if (truth[0]==0&&truth[1]==0&&truth[2]==0&&truth[3]==0)
+			break;
+
+
+	}
+	for(p=&ch[0][0];p<=&ch[9][9];p++)
+	{    if(p!=&ch[0][0]&&(p-&ch[0][0])%10==0)  printf("\n");
+	printf("%c ",*p);
+	}
+	printf("\n" );
+	return 0;
+}
+11.
+#include<stdio.h>
+#include <ctype.h>
+#define SIZE (int)sizeof(ch)/(int)sizeof(ch[0])
+void main()
+{
+     char ch[15]={'\0'};int i;
+     printf("Enter phone number:" );
+     for (i=1;i<=15;i++)
+     {
+     		scanf("%c",&ch[i-1]);
+
+     }
+     for (i=0; i < SIZE; ++i)
+     {
+     	/* code */
+     	if ((ch[i]>='0'&&ch[i]<='9')||ch[i]=='|')
+     	{
+     		printf("%c",ch[i]);
+     	}
+     	else
+     	{
+     		ch[i]=toupper(ch[i]);
+     		switch(ch[i])
+     	{ 
+     		case'A':case'B':case'C':
+     		ch[i]='2';break;
+     		case'D':case'E':case'F':
+     		ch[i]='3';break;
+     		case'G':case'H':case'I':
+     		ch[i]='4';break;
+     		case'J':case'K':case'L':
+     		ch[i]='5';break;
+     		case'M':case'N':case'O':
+     		ch[i]='6';break;
+     		case'P':case'Q':case'R':case'S':
+     		ch[i]='7';break;
+     		case'T':case'U':case'V':
+            ch[i]='8';break;
+            case'W':case'X':case'Y':case'Z':
+            ch[i]='9';break;
+        }
+     		printf("%c",ch[i]);
+     	}
+     }
+}
+11.
+#include<stdio.h>
+#include <ctype.h>
+void main()
+{
+	char a;
+	int ch[26]={1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10};
+	int value,sum=0;
+	printf("Enter a word:");
+	for (;;)
+	{
+		scanf("%c",&a);
+	     if(a>='a'&&a<='z')
+		a=toupper(a);
+		 else if(a>='A'&&a<='Z');
+		 else break;
+		value=a-'A';
+		sum+=ch[value];
+		
+	}
+	printf("Scrabble value:%d\n",sum);
+}
+11.
+#include <stdio.h>
+void main()
+{
+	char name[20]={"\0"},a;
+	int i=1,n;
+	printf("Enter a sentence:");
+	scanf(" %c",&name[0]);
+	do{
+		scanf("%c",&a);
+		if(a=='\n') break;
+		if(a!=' ') name[i]=a;
+		n=i;
+		i++;
+	}while(i<20);
+	for(i=0;i<20;i++)
+	{
+		if(i!=0&&name[i]>='A'&&name[i]<='Z') 
+		{
+			printf("You entered the name:");
+			break;
+		}
+	}
+	for(;i<=n;i++)
+	{
+		printf("%c",name[i] );	
+	}
+	printf(" %c\n",name[0] );
+
+}
+15.
+#include <stdio.h>
+void main()
+{
+	char sentence[30],terminator;
+	int i=0,num,n,number;
+	printf("Enter a sentence:");
+	for (i=0;;)
+	{ 
+		scanf("%c",&sentence[i]);
+		if(sentence[i]=='!'||sentence[i]=='?'||sentence[i]=='.')
+			break;
+		i++;	
+	}
+	terminator=sentence[i];
+	sentence[i+1]='\0';
+	printf("Reversal of sentence:");
+	for(num=i,n=num;num>=0;--num)
+	{
+		if(sentence[num]==' ')
+		{
+			for(number=num+1;number<n;number++)
+			{
+				printf("%c",sentence[number]);
+			}
+			printf(" ");
+		    n=num;
+		}
+		else if(num==0)
+		{
+			for(number=0;number<n;number++)
+			{
+				printf("%c",sentence[number]);
+			}
+			n=num;
+		}
+	}
+	printf("%c",terminator);
+	printf("\n"); 
+}
+16.
+#include <stdio.h>
+void main()
+{
+	char encrypted[100],word,tem_word;
+	int num_word,shift_amount,i;
+	printf("Enter message to be encrypted:");
+	for(num_word=0;;)
+	{
+		word=getchar();
+		encrypted[num_word]=word;
+		num_word++;
+		if(word=='.') break;
+	}
+	encrypted[num_word]='\0';
+	printf("Enter shift amount(1-25):");//字符移动位数
+	scanf("%d",&shift_amount);
+	for(i=0;i<num_word;i++)//加密&解密
+	{
+		if(encrypted[i]>='a'&&encrypted[i]<='z')
+		{  
+			tem_word=encrypted[i]+shift_amount;
+encrypted[i]=tem_word;
+			if(tem_word>'z')
+				{
+					encrypted[i]=((tem_word-'a')+shift_amount)%26+'a';//如果想解密请输入加密数的负值，至于为什么与26的差值不行，我也普吉岛啊
+			}
+			
+		}
+		else if(encrypted[i]>='A'&&encrypted[i]<='Z')
+		{
+		tem_word=encrypted[i]+shift_amount;
+		encrypted[i]=tem_word;	
+			if(tem_word>'Z')
+				{
+					encrypted[i]=((tem_word-'A')+shift_amount)%26+'A';	
+			}
+			
+		}
+	}
+	for(i=0;i<num_word;i++)
+		printf("%c",encrypted[i]);
+	printf("\n");
+}
+16.
+#include <stdio.h>
+#include <ctype.h>
+void main()
+{
+	int ch1[26],ch2[26],i;
+	char word;
+	for(i=0;i<26;i++)//初始化两个数组
+	{
+		ch1[i]=0;
+		ch2[i]=0;
+	}
+	printf("Enter first word:");//输入第一个单词并对每个字母出现次数进行计数
+	for(;;)
+	{
+		scanf("%c",&word);
+		if(isalpha(word))
+		{
+			word=tolower(word);
+			ch1[word-'a']+=1;
+		}
+		else break;
+	}
+	printf("Enter second word:");//输入第二个单词并对每个字母出现次数进行计数
+	for(;;)
+	{
+		scanf("%c",&word);
+		if(isalpha(word))
+		{
+			word=tolower(word);
+			ch2[word-'a']+=1;
+		}
+		else break;
+	}
+	for(i=0;i<26;i++)//最终对比
+	{
+		if(ch1[i]!=ch2[i])
+		{
+			printf("The word are not anagrams.\n");
+			break;
+		}
+	}
+	printf("The word are anagrams.\n");
+}
+17.
+#include<stdio.h>
+void main()
+{
+	char num[99][99]={0};
+	int size,n,row,column,row1,column1;
+	printf("This program creates a magic square of a specified size.\nThe size must be an odd number between 1 and 99.");
+	printf("Enter size of magic square:");
+	scanf("%d",&size);
+	row=0;column=size/2;
+	for(n=0;n<size*size;n++)
+	{
+		num[row][column]=n+1;
+		row1=row;column1=column;
+		row-=1;column+=1;
+		if(row==-1) row=4;
+		if(column==5) column=0;
+		if (num[row][column]!=0)
+		{
+			row=row1+1;
+				if(row==5) row=0;
+			column=column1;
+		}
+	}
+	for(row=0;row<size;row++)
+	{
+		for(column=0;column<size;column++)
+		{
+			printf("%3d ",num[row][column]);
+		}
+		printf("\n");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
