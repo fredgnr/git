@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-dfafddsfddsfas
-=======
-sdfadsfadfdsfsadfsdadaf
->>>>>>> feature1
