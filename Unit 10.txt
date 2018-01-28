@@ -200,6 +200,15 @@ void print_result(void)
 	printf("\n\n");
 }
 3.
+/************************************************************
+there are some flaw in the code(in the function--analyze_hand)
+if you want to get the correct answer,you must establish a new 
+charactor array.when you analyze rank,you should sort all the 
+cards in hand,and then store them in the array you established 
+just away.good luck!
+BTW I ignored
+*************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #define NUM_RANK 13
@@ -369,4 +378,83 @@ void print_result(void)
 	else if(pairs==1)         printf("Pairs\n");
 	else                      printf("High pairs\n");
 	printf("\n\n");  
+}
+6.
+#include <stdio.h>
+#define STACK_SIZE 100
+int contents[STACK_SIZE];
+int top=0;
+void make_empty(void);
+bool is_empty(void);
+bool is_full(void);
+void push(int i);
+int pop(void);
+void main()
+{
+	char input;
+	int i;
+	printf("Enter an RPN expression:");
+	for(;;)
+	{
+		scanf(" %c",&input);
+		if(input>='0'&&input<='9')
+		{
+			switch(input)
+			{
+			case '0': i=0;break;
+			case '1': i=1;break;
+			case '2': i=2;break;
+			case '3': i=3;break;
+			case '4': i=4;break;
+			case '5': i=5;break;
+			case '6': i=6;break;
+			case '7': i=7;break;
+			case '8': i=8;break;
+			case '9': i=9;break;
+			}
+			push(i);
+		}
+		else if(input=='+')
+			push(pop()+pop());
+		else if(input=='*')
+			push(pop()*pop());
+		else if(input=='-')
+			push(-pop()+pop());
+		else if(input=='/')
+			push((int)(1/((double)pop()/(double)pop())));
+		else if(input=='=')
+		{
+			printf("%d\n",pop());
+			printf("Enter an RPN expression:");
+			make_empty();
+		}
+		else  return;
+
+	}
+}
+void make_empty(void)
+{
+	top=0;
+}
+bool is_empty(void)
+{
+	return top==0;
+}
+bool is_full(void)
+{
+	return top==STACK_SIZE;
+}
+void push(int i)
+{
+	if(is_full())
+		printf("Expression is too complex\n");
+	else 
+		contents[top++]=i;
+}
+int pop(void)
+{
+	if(is_empty())
+		printf("Not enough operands in the expression\n");
+	else 
+		return contents[--top];
 }
