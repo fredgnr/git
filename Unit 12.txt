@@ -131,3 +131,43 @@ void palindrmore(char *a,int n)
 	}
 	printf("palindrmore\n");
 }
+6.
+#include<stdio.h>
+#define NUM_MAX 10
+int *middle(int *a,int *b);
+void quicksort(int *a,int *b);
+void main()
+{
+	int a[NUM_MAX],num,*p;
+	for(num=0;num<NUM_MAX;num++)
+	{
+		printf("Enter the %d number:",num+1);
+		scanf("%d",a+num);
+	}
+	p=a;
+	quicksort(p,p+num-1);
+	for(num=0;num<NUM_MAX;num++)
+		printf("%d\n",a[num]);
+}
+int *middle(int *a,int *b)
+{
+	int x;
+	for(;;)
+	{
+		while(*a<=*b&&a<b)
+			b--;
+		if(a==b) return a;
+		x=*a;*a=*b;*b=x;a++;//交换
+		while(*b>=*a&&a<b)
+			a++;
+		if(a==b) return a;
+		x=*a;*a=*b;*b=x;b--;
+	}
+}
+void quicksort(int *a,int *b)
+{
+	if(a==b)
+		return;
+	quicksort(a,middle(a,b));
+	quicksort(middle(a,b)+1,b);
+}
