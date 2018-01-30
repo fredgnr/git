@@ -1,0 +1,133 @@
+4.
+#define STACK_SIZE 100
+int content[STACK_SIZE];
+int *top_ptr;
+void make_empty(void)
+{
+	top_ptr=content;
+}
+bool is_empty(void)
+{
+	return top_ptr==content;
+}
+bool is_full(void)
+{
+	return top_ptr==content+STACK_SIZE;
+}
+void push(int i)
+{
+	if(is_full())
+		stack_overflow();
+	else 
+		*top_ptr++=i;
+}
+int pop(void)
+{
+	if(is_empty())
+		stack_underflow();
+	else 
+		return *--top_ptr;
+}
+6.
+int sum_array(const int *a,int n)
+{
+	int *i,sum;
+	sum=0;
+	for(i=a;i<n;i++)
+		sum+=*i;
+	return sum;
+}
+7.
+bool search(const int a[],int n,int key)
+{
+	int *p;
+	bool position;
+	for(p=a,position=false;p<a+n;p++)
+	{
+		if(*p=key)
+			return position=true;
+	}
+	return position;
+}
+8.
+void store_zeros(int *a,int n)
+{
+	int *p;
+	for(p=a;p<a+n;p++)
+		*p=0;
+}
+9.
+double inner_product(const double *a,const double *b,int n)
+{
+	double *x,*y,sum;
+	for(sum=0,x=a,y=b;x<a+n;x++,y++)
+		sum+=*x**y;
+	return sum;
+}
+10.
+int *find_middle(int *a,int n)
+{
+	return a+n/2;
+}
+
+
+
+
+
+1.
+#include <stdio.h>
+#define NUM 100
+void print_inverted_order(char *a,int n);
+void main()
+{
+	char a[NUM],ch;
+	int n=0;
+	printf("Enter a message:");
+	while((ch=getchar())!='\n')
+		a[n++]=ch;
+	printf("Reversal is:");
+	print_inverted_order(a,n);
+}
+void print_inverted_order(char *a,int n)
+{
+	char *i;
+	for(i=a+n-1;i>=a;i--)
+	{
+		printf("%c",*i);
+	}
+	printf("\n");
+}
+2.
+#include <stdio.h>
+#include <ctype.h>
+void palindrmore(char *a,int n);
+void main()
+{
+	char a[100],ch;
+	int num=0;
+	printf("Enter a message:");
+	while((ch=getchar())!='\n')
+	{
+		tolower(ch);
+		a[num++]=ch;
+	}
+	palindrmore(a,num);
+}
+void palindrmore(char *a,int n)
+{
+	char *p,*q;
+	for(p=a,q=a+n-1;p<q;)
+	{
+		while(*p<'a'||*p>'z')
+			p++;
+		while(*q<'a'||*q>'z')
+			q--;
+		if(p>=q) break;
+		if(*p++!=*q--)
+			{
+				printf("Not a palindrmore\n");
+				return;
+		    }
+	}
+	printf("palindrmore\n");
+}
