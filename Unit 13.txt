@@ -44,3 +44,186 @@ int read_line(char str[], int n)
 	str[i] = '\0';
 	return i;
 }
+exercise
+5.
+(a)
+#include<ctype.h>
+void capitalize(char *str)
+{
+	int i;
+	for(i=0;str[i]!='\0';i++)
+		toupper(str[i]);
+}
+(b)
+#include<ctype.h>
+void capitalize(char *str)
+{
+	while(*str!='\0')
+	 toupper(*str++);
+}
+6.
+void censor(char *str)
+{
+     while(*(str+)!='\0')
+     {
+     	if(*str=='f'&&*(str+1)=='o'&&*(str+2)=='o')
+     	{
+     		*str=x;*(str+1)=x;*(str+2)=x;str+=3;
+     	}
+     	else str++;
+     }
+}
+11.
+int strcmp(char *s1,char *s2)
+{
+      while(*s1++==*s2++)
+      	;
+      return *s1-*s2
+}
+12.
+void get_extension(const char *domain,char *index_url)
+{
+	char *p;
+	int nlen,i;
+	nlen=strlen(char);
+	for(p=domain+nlen-1)
+		if(*p=='.')
+			break;
+	if(i==0)
+		index_url=nullptr;
+	else
+		strcpy(index_url,p+1);
+}
+13.
+void build_index_url(const char *domain,char *index_url)
+{
+	char str[100];
+	strcpy(str,"http://www.");
+	strcat(str,domain);
+	strcat(str,"/index.html");
+	strcpy(index_url,str);
+
+}
+16.
+int count_spaces(const char s[])
+{
+	int count =0;
+	while(*s!='\0')
+		if(*s++==' ')
+			count++;
+	return count;
+}
+17.
+bool test_extension(const char *file_name,const char *extension)
+{
+	char *p=file_name;
+	while(*p!='\0')
+		toupper(*p++);
+	while(*p!='.')
+		p--;
+	p++；
+	if(strcmp(p,extension)==0)
+		return true;
+	else 
+		return false;
+
+}
+18.
+void remove_filename(char *url)
+{
+	int n;
+	n=strlen(url);
+	url+=n;
+	while(*url--!='/');
+	*(url+1)='\0';
+}
+
+
+
+
+
+1.
+#include<stdio.h>
+#include<string.h>
+int read_string(char *str);
+int main(void)
+{
+	char ch1[20], ch2[20], ch3[20];
+	int num;
+	printf("Enter a word:");
+	if (read_string(ch1) == 4);
+	strcpy(ch3, ch1);
+	for (;;)
+	{
+		printf("Enter a word:");
+			if (read_string(ch2) == 4)
+				break;
+		if (strcmp(ch1, ch2)>0)
+			strcpy(ch1, ch2);
+		if (strcmp(ch3, ch2)<0)
+			strcpy(ch3, ch2);
+	}
+	printf("Smallest word:%s\n", ch1);
+	printf("Largest word:%s\n", ch3);
+	return 0;
+}
+int read_string(char *str)
+{
+	int num = 0, ch;
+	while ((ch = getchar()) != '\n')
+		str[num++] = ch;
+	str[num] = '\0';
+	return num;
+}
+2.(a)&&(b)
+#include <stdio.h>
+#include <string.h>
+#define MAX_REMIND 50
+#define MSG_LEN 60
+int read_line(char str[], int n);
+int main(void)
+{
+	char reminder[MAX_REMIND][MSG_LEN + 3];
+	char day_str[9] = { '\0' }, msg_str[MSG_LEN + 1];
+	int day, i, j,hour,minute, num_remind = 0;
+	for (;;)
+	{
+		if (num_remind == MAX_REMIND)
+		{
+			printf("-No space left--\n");
+			break;
+		}
+		printf("Enter day and reminder:");
+		scanf("%2d", &day);
+		scanf("%d:%d",&hour,&minute);
+		if (day == 0||hour>=24||hour<0||minute<0||minute>60)
+			break;
+		if(day>31)
+		{
+			printf("A wrong day.igorned\n");
+			continue;
+		}
+		sprintf(day_str, "%2d %2d:%2d", day,hour,minute);
+		read_line(msg_str, MSG_LEN);
+		for (i = 0; i < num_remind; i++)
+			if (strcmp(day_str, reminder[i]) < 0)
+				break;
+		for (j = num_remind; j > i; j--)
+			strcpy(reminder[j], reminder[j - 1]);
+		strcpy(reminder[i], day_str);
+		strcat(reminder[i], msg_str);
+		num_remind++;
+	}
+	printf("\nDay Reminder\n");
+	for (i = 0; i < num_remind; i++)
+		printf("%s\n", reminder[i]);
+	return 0;
+}
+int read_line(char str[], int n)
+{
+	int ch, i = 0;
+	while ((ch = getchar()) != '\n'&&i<n)
+			str[i++] = ch;
+	str[i] = '\0';
+	return i;
+}
