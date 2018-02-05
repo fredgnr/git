@@ -444,3 +444,53 @@ void print_words(char str[MAX_WORDS][MAX_CHARACTERS])
 			printf("%s ", str[row]);
 	printf("\n");
 }
+13.
+#include<stdio.h>
+void encrypt(char *message, int shitf);
+int main()
+{
+	char message[100];
+	int shift;
+	printf("Enter your sentence:");
+	scanf("%s", message);
+	printf("Enter the shift:");
+	scanf("%d", &shift);
+	encrypt(message, shift);
+	printf("%s\n", message);
+	return 0;
+}
+void encrypt(char *message, int shift)
+{
+	while (*message != '\0')
+		*message++ = 'a'+(*message+shift-'a')%26;
+}
+14.
+#include<stdio.h>
+#include<ctype.h>
+bool are_anagrams(const char *word1, const char *word2);
+int main()
+{
+	char word1[100],word2[100];
+	printf("Enter first word:");
+	gets_s(word1, 99 * sizeof(char));
+	printf("Enter second word:");
+	gets_s(word2, 99 * sizeof(char));
+	if (are_anagrams((const char*)word1,(const char *) word2))
+		printf("The words are anagrams.\n");
+	else printf("The words are not anagrams.\n");
+}
+bool are_anagrams(const char *word1, const char *word2)
+{
+	int num[26],i=0;
+	while (i < 26)
+		num[i++] = 0;
+	while (*word1 != '\0')
+		num[*word1++ - 'a']++;
+	while (*word2 != '\0')
+		num[*word2++ - 'a']--;
+	i = 0;
+	while (i < 26)
+		if (num[i++])
+			return false;
+	return true;
+}
