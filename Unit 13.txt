@@ -227,3 +227,220 @@ int read_line(char str[], int n)
 	str[i] = '\0';
 	return i;
 }
+4.
+#include<stdio.h>
+#include<string.h>
+int main(int argc, char *argv[])
+{
+	int i;
+	for(i=argc-1;i>0;i--)
+		printf("%s\n",argv[i]);
+	return 0;
+}
+6.
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	const char *ch1[] =
+	{ "ten","eleven","twelve",
+		"third","fourteen","sixteen",
+		"seventeen","eighteen","nineteen"
+	};
+	const char *ch2[] =
+	{
+		"twenty","thirty","forty",
+		"fifty","sixty","seventy",
+		"eighty","ninety"
+	};
+	const char *ch3[] =
+	{
+		"","-one","-two","-three",
+		"-four","-five","-six",
+		"-seven","-eight","-nine"
+	};
+	int a, b;
+	printf("Enter a two—digit number:");
+	scanf("%1d%1d", &a, &b);
+	if (a == 1)
+		printf("You enter the number %s\n", ch1[b]);
+	else if (a == 0)
+		printf("The number you entered is not a two_digit number\n");
+	else
+		printf("You enter the nubmer %s%s\n", ch2[a-2], ch3[b]);
+	return 0;
+}
+7.
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+	char *ch1[]=
+	        {   "ten","eleven","twelve",
+	            "third","fourteen","sixteen",
+	            "seventeen","eighteen","nineteen"
+	        };
+	char *ch2[]=
+	        { 
+		        "twenty","thirty","forty",
+		        "fifty","sixty","seventy",
+		        "eighty","ninety"
+            };
+    char *ch3[]=
+            {
+            	"","-one","-two","-three",
+            	"-four","-five","-six",
+            	"-seven","-eight","-nine"
+            };
+    int a,b;
+    printf("Enter a two—digit number:");
+    scanf("%1d%1d",&a,&b);
+    if(a==1)
+    	printf("You enter the number %s\n",ch1[b]);
+    else if(a==0)
+    	printf("The number you entered is not a two_digit number\n");
+    else 
+    	printf("You enter the nubmer %s%s\n",ch2[a],ch3[b]);
+    return 0;
+}
+8.
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+int compute_vowel_count(char *word);
+int main(void)
+{
+	char word[128];
+	printf("Enter a word: ");
+	scanf("%s", word);
+	printf("Scrabble value : %d", compute_vowel_count(word));
+	return 0;
+}
+int compute_vowel_count(char *word)
+{
+	int i, value = 0;
+	int N = strlen(word);
+	for (int i = 0; i < N; i++)
+	{
+		word[i] = toupper(word[i]);
+	}
+	for (int i = 0; i < N; i++)
+	{
+		switch (word[i])
+		{
+		case 'A': value += 1; break;
+		case 'B': value += 3; break;
+		case 'C': value += 3; break;
+		case 'D': value += 2; break;
+		case 'E': value += 1; break;
+		case 'F': value += 4; break;
+		case 'G': value += 2; break;
+		case 'H': value += 4; break;
+		case 'I': value += 1; break;
+		case 'J': value += 8; break;
+		case 'K': value += 5; break;
+		case 'L': value += 1; break;
+		case 'M': value += 3; break;
+		case 'N': value += 1; break;
+		case 'O': value += 1; break;
+		case 'P': value += 3; break;
+		case 'Q': value += 10; break;
+		case 'R': value += 1; break;
+		case 'S': value += 1; break;
+		case 'T': value += 1; break;
+		case 'U': value += 1; break;
+		case 'V': value += 4; break;
+		case 'W': value += 4; break;
+		case 'X': value += 8; break;
+		case 'Y': value += 4; break;
+		case 'Z': value += 10; break;
+		default:;
+		}
+	}
+	return value;
+}
+9.
+#include<stdio.h>
+#include<string.h>
+int compute_vowel_count(const char *sentence);
+int main(void)
+{
+	char ch[100];																		
+	printf("Enter a sentence:");
+	gets(ch); 
+	printf("Your sentence contains %d vowels",compute_vowel_count((const char *)ch));
+}
+int compute_vowel_count(const char *sentence)
+{
+    int num = 0, i;
+	for (i = 0; i<strlen(ch); i++)														
+	if ('a' == ch[i] || 'e' == ch[i] || 'i' == ch[i] || 'o' == ch[i] || 'u' == ch[i])
+		num++;
+	return num;
+}
+11.
+#include<stdio.h>
+#include<string.h>
+double compute_average_word_length(const char * str);
+void main()
+{
+	char str[100];
+	printf("Enter a sentence:");
+	scanf("%s",char);
+	printf("The average word length is:%.1f\n",compute_average_word_length(str));
+}
+double compute_average_word_length(const char *str)
+{
+	int nlen=0;
+	int nword=0;
+    while(*str!='\0')
+    	if(*str++==' ')
+    		nword++;//最后还有一个单词
+    	else nlen++;
+    return (double)nword/(double)nlen;
+}
+12.
+#include<stdio.h>
+#include<string.h>
+#define MAX_WORDS 20
+#define MAX_CHARACTERS 30
+void read_words(char str[MAX_WORDS][MAX_CHARACTERS]);
+void print_words(char str[MAX_WORDS][MAX_CHARACTERS]);
+int main()
+{
+	char str[MAX_WORDS][MAX_CHARACTERS];
+	printf("Enter your sentence:");
+	read_words(str);
+	printf("Reversal of sentence:");
+	print_words(str);
+	return 0;
+}
+void read_words(char str[MAX_WORDS][MAX_CHARACTERS])
+{
+	int row = 0, column = 0;
+	int ch;
+	for (; row<MAX_WORDS; row++)
+		for (column = 0; column<MAX_CHARACTERS; column++)
+			str[row][column] = '\0';
+	row = column = 0;
+	while ((ch = getchar()) != '\n')
+	{
+		if (ch != ' ')
+		{
+			str[row][column++] = ch;
+		}
+		else
+		{
+			str[row++][column] = '\0';
+			column = 0;
+		}
+	}
+}
+void print_words(char str[MAX_WORDS][MAX_CHARACTERS])
+{
+	int row;
+	for (row = MAX_WORDS - 1; row >= 0; row--)
+		if (str[row][0] != '\0')
+			printf("%s ", str[row]);
+	printf("\n");
+}
